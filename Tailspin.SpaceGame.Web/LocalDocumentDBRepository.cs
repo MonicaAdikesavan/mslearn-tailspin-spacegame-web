@@ -34,10 +34,11 @@ namespace TailSpin.SpaceGame.Web
         /// The task result contains the retrieved item.
         /// </returns>
         /// <param name="id">The identifier of the item to retrieve.</param>
-        public Task<T> GetItemAsync(string id)
+ public Task<T> GetItemAsync(string id)
         {
             return Task<T>.FromResult(_items.Single(item => item.Id == id));
         }
+
 
         /// <summary>
         /// Retrieves items from the store that match the given query predicate.
@@ -52,20 +53,20 @@ namespace TailSpin.SpaceGame.Web
         /// <param name="page">The 1-based page of results to return.</param>
         /// <param name="pageSize">The number of items on a page.</param>
         public Task<IEnumerable<T>> GetItemsAsync(
-            Expression<Func<T, bool>> queryPredicate,
-            Expression<Func<T, int>> orderDescendingPredicate,
-            int page = 1, int pageSize = 10
-        )
-        {
-            var result = _items.AsQueryable()
-                .Where(queryPredicate) // filter
-                .OrderByDescending(orderDescendingPredicate) // sort
-                .Skip(page * pageSize) // find page
-                .Take(pageSize - 1) // take items
-                .AsEnumerable(); // make enumeratable
+    Expression<Func<T, bool>> queryPredicate,
+    Expression<Func<T, int>> orderDescendingPredicate,
+    int page = 1, int pageSize = 10
+)
+{
+    var result = _items.AsQueryable()
+        .Where(queryPredicate) // filter
+        .OrderByDescending(orderDescendingPredicate) // sort
+        .Skip(page * pageSize) // find page
+        .Take(pageSize) // take items
+        .AsEnumerable(); // make enumeratable
 
-            return Task<IEnumerable<T>>.FromResult(result);
-        }
+    return Task<IEnumerable<T>>.FromResult(result);
+}
 
         /// <summary>
         /// Retrieves the number of items that match the given query predicate.
