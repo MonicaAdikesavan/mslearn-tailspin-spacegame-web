@@ -1,3 +1,4 @@
+[![Build Status](https://monicaadikesavan.visualstudio.com/Space%20Game%20-%20web%20-%20Workflow/_apis/build/status/mslearn-tailspin-spacegame-web?branchName=master)](https://monicaadikesavan.visualstudio.com/Space%20Game%20-%20web%20-%20Workflow/_build/latest?definitionId=23&branchName=master)
 
 # Contributing
 
